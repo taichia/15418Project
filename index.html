@@ -61,6 +61,30 @@
 
 <p>For our 125% goal, we could implement different training algorithms and check their quality/performance against the one we wrote. Such algorithms include the Metropolis-Hastings algorithm, Gibbs sampling, Slice sampling, etc. All of these algorithms can be parallelized in some way, so we can implement crude versions of these algorithms to compare quality/speed. </p>
 
+<h3>
+<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Midpoint Progress Review</h3>
+<p>Summary so far:</p>
+<p>We’ve finished all of the preliminary research we wanted to do on both Deep Boltzmann Machines and the underlying CUDA portion. Additionally, we’ve implemented a serial program which allows us to train and test on MNIST, an handwritten digit (0-9) dataset. While MNIST is often known as a “toy” dataset, the unoptimized Deep Boltzmann Machine program takes ~5 minutes per epoch on just 10% of the data, and given that we want to run about 100 epochs over all of the data, this is way too slow. It is currently written in python/numpy, which is single-threaded but has otherwise “well-optimized” matrix operations.</p>
+
+<p>Next steps:</p>
+<p>The plan from here on out is to convert the numpy portions into CUDA code or equivalent CUDA matrix operation libraries (for example, we don’t think it’s necessary to have to re-implement matrix multiplication from scratch). This will allow us to train more powerful models, which should increase the quality of our deliverables. The simplest deliverable is just going to be a graph of the cross-entropy reconstruction error for various model parameters. However, given that we are creating a generative model, we can do things such as sampling the distribution for “characters” to show off what it has learned about the dataset of characters. Some of them will look like real characters, some might not look like a single character but a morph of two or more. We can also do completions, which is where half of the character is given and we want to fill in the other half with the correct pixels, and upscaling, where we take a character scaled down and try to recreate the original image. Ideally we can create all of these visual deliverables; the algorithmic ones where we compare and contrast different algorithms will definitely something that’s not necessary but “nice to have”.</p>
+
+<p>For implementing CUDA into python code, we will be using this website from NVIDIA for reference and tutorials (<a href="https://developer.nvidia.com/how-to-cuda-python">https://developer.nvidia.com/how-to-cuda-python</a>). In this website, it goes over sample/examples on how to use CUDA on python modules and also how to use nvprof and other profilers to help us debug where in the code takes the most time and potentially use that information to achieve higher speedup in our machine. 
+</p>
+<p>Moving on:</p>
+<p>For the week of November 21st up until Thanksgiving, we will try to install anaconda on AFS and test functionality of CUDA on python using this <a href="https://github.com/taichia/15418ProjectWebsite/blob/gh-pages/vectoradd.py">code </a>. If this fails, we will have to ask the professors to allow us to borrow a 1080. In the meantime, I can borrow a non-1080 NVIDIA gpu from one of my friends or we can use our laptop’s 870m/970m until we find a way to borrow a 1080.</p>
+
+<p>From Thanksgiving until November 28th, we plan on implementing a crude CUDA implementation of our code.</p>
+
+<p>From November 28th to December 3rd (very flexible), we will attempt to finetune the algorithm so that we can achieve maximum speedup for the program. We will use tools like nvprof to see where in our code we can achieve faster speedup. Of course because training takes a long time, we are not sure whether we can find better solutions to speedup and quality in just 1 week. This process might take only 1 day, or the entire 7 days.</p> 
+
+<p>From December 3rd until December 8th, we will implement a crude version of a parallel tempering algorithm and Metropolis-Hastings algorithm. This process should not take too long since by now we should be familiar with implementing CUDA into python. The only problem we might run into is that these algorithms won’t be fine-tuned to the smallest detail due to the time-constraint. </p>
+
+<p>From December 8th to the December 13th, we will begin implementing the visual portion of the deliverable. We will be creating a slideshow as opposed to a physical posterboard because we will be displaying videos of our work, which we think will work best if we presented our project digitally as opposed to a before-after picture. </p>
+
+<p>One problem we might run into is installing the necessary programs on our AFS. For CUDA to work on python according to the tutorial, we will need to install Anaconda Accelerate in order to use the numbapro compiler. We are not entirely sure whether this is possible to install on remote machine, and if not, we would need to install a linux operating system on our home desktop and install a borrowed 1080 from the school. Another problem we might run into is whether or not we will have time to achieve our 125% milestone, as writing new algorithms for the sake of testing might take too long and we are as of now unsure how much time fine-tuning the Deep Boltzmann machine will take.</p> 
+
+<p>Preliminary results: The natural reconstruction cross-entropy is about 540, our program is able to reduce that number to about 210-230 after 30 epochs (which took more than an hour!) So our goal from here is to speed it up so we can add more model complexity to lower the training time and error.</p>
 
 
 <h3>
