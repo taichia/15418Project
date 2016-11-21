@@ -54,6 +54,16 @@
 </ul></p>
 
 <h3>
+<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Milestones:</h3>
+<p>For our 75% goal, we plan on getting the parallelized version of the machine implemented with CUDA. Currently, we are writing out sequential code with Python, so we had to research how to implement CUDA programming in python. In our research, we found that we can use numbapro to run vectorized python code on the 1080. We also found that benchmarking will be very easy with the built-in profiler (or use nvprof) to see exactly in where in our code and in which device (cpu or gpu) takes the most time. There are a lot of resources available on how to use cuda on python, most of which is found on youtube (CUDAcast #10 and onward).  </p>
+
+<p>For our 100% goal, we would need to tune our CUDA implementation to achieve maximum speed-up. We can do this in several ways, including increasing/decreasing gridsize/blocksize each cuda function, network size, learning rate, etc.</p>
+
+<p>For our 125% goal, we could implement different training algorithms and check their quality/performance against the one we wrote. Such algorithms include the Metropolis-Hastings algorithm, Gibbs sampling, Slice sampling, etc. All of these algorithms can be parallelized in some way, so we can implement crude versions of these algorithms to compare quality/speed. </p>
+
+
+
+<h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
 <p>The two team members that worked on this project are Taichi Akiyama (<a href ="https://github.com/taichia" class="user-mention">@taichia</a>) and Edgar Chen(<a href="https://github.com/EggyLv999" class="user-mention">@EggyLv999</a>). 
